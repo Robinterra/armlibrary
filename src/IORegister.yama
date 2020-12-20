@@ -1,0 +1,102 @@
+namespace "ARM.CortexM"
+{
+    using "System";
+
+    public class IORegister
+    {
+
+        // -----------------------------------------------
+
+        #region get/set
+
+        // -----------------------------------------------
+
+        public static int PortA()
+        {
+            return #defalgo IORegister,PortA:;
+        }
+
+        // -----------------------------------------------
+
+        public static int PortB()
+        {
+            return #defalgo IORegister,PortB:;
+        }
+
+        // -----------------------------------------------
+
+        
+        public static int PortC()
+        {
+            return #defalgo IORegister,PortC:;
+        }
+
+        // -----------------------------------------------
+
+        
+        public static int PortD()
+        {
+            return #defalgo IORegister,PortD:;
+        }
+
+        // -----------------------------------------------
+
+        #endregion get/set
+
+        // -----------------------------------------------
+
+        #region methods
+
+        // -----------------------------------------------
+
+        public static bool InitPort ( int port, int pin, int mode )
+        {
+            #defalgo IORegister,InitPort:
+
+            return true;
+        }
+
+        // -----------------------------------------------
+
+        public static int Read ( int port, int pin )
+        {
+            return #defalgo IORegister,Read:;
+        }
+
+        // -----------------------------------------------
+
+        public static bool Write ( int port, int pin, int value )
+        {
+            #defalgo IORegister,Write:
+
+            return true;
+        }
+
+        // -----------------------------------------------
+
+        #endregion methods
+
+        // -----------------------------------------------
+
+    }
+
+    public enum IOValue
+    {
+        Low 0x0,
+        High 0x1
+    }
+
+    /*public enum Registers
+    {
+        CRL 0x00,
+        CRH 0x04,
+        IDR 0x08,
+        ODR 0x0C
+    }*/
+
+    public enum IORegisterMode
+    {
+        Read 0x8,
+        Write 0x1
+    }
+}

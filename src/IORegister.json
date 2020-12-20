@@ -1,0 +1,178 @@
+[
+    {
+        "Name": "arm-t32",
+        "Algos": [
+            {
+                "Name": "IORegister",
+                "Mode": "PortA",
+                "Description": null,
+                "Keys": [
+                    {
+                        "Name": "[GPIOA]",
+                        "Values": null
+                    }
+                ],
+                "PostKeys": [],
+                "AssemblyCommands": [
+                "ldr r12, =[GPIOA]"
+                ]
+            },
+            {
+                "Name": "IORegister",
+                "Mode": "PortB",
+                "Description": null,
+                "Keys": [
+                    {
+                        "Name": "[GPIOB]",
+                        "Values": null
+                    }
+                ],
+                "PostKeys": [],
+                "AssemblyCommands": [
+                "ldr r12, =[GPIOB]"
+                ]
+            },
+            {
+                "Name": "IORegister",
+                "Mode": "PortC",
+                "Description": null,
+                "Keys": [
+                    {
+                        "Name": "[GPIOC]",
+                        "Values": null
+                    }
+                ],
+                "PostKeys": [],
+                "AssemblyCommands": [
+                "ldr r12, =[GPIOC]"
+                ]
+            },
+            {
+                "Name": "IORegister",
+                "Mode": "PortD",
+                "Description": null,
+                "Keys": [
+                    {
+                        "Name": "[GPIOD]",
+                        "Values": null
+                    }
+                ],
+                "PostKeys": [],
+                "AssemblyCommands": [
+                "ldr r12, =[GPIOD]"
+                ]
+            },
+            {
+                "Name": "IORegister",
+                "Mode": "InitPort",
+                "Description": null,
+                "Keys": [
+                    {
+                        "Name": "[JUMPTO]",
+                        "Values": [
+                        "1"
+                        ]
+                    }
+                ],
+                "PostKeys": [],
+                "AssemblyCommands": [
+                "cmp r2, #0x08",
+                "blt [JUMPTO[0]]",
+                "orr r1, r1, #4",
+                "asr r2, r2, #0x4",
+                "[JUMPTO[0]]:",
+                "lsl r3, r3, r2",
+                "str r3, [r1]"
+                ]
+            },
+            {
+                "Name": "IORegister",
+                "Mode": "Read",
+                "Description": null,
+                "Keys": [
+                ],
+                "PostKeys": [],
+                "AssemblyCommands": [
+                "orr r1, r1, #0x08",
+                "ldr r12, [r1]",
+                "asr r12, r12, r2",
+                "and r12, r12, #0x1"
+                ]
+            },
+            {
+                "Name": "IORegister",
+                "Mode": "Write",
+                "Description": null,
+                "Keys": [
+                ],
+                "PostKeys": [],
+                "AssemblyCommands": [
+                    "orr r1, r1, #0x0c",
+                    "and r3, r3, #0x1",
+                    "lsl r3, r3, r2",
+                    "str r3, [r1]"
+                ]
+            }
+       ],
+        "AdvancedKeyReplaces": [
+            {
+                "Key": "[GPIOA]",
+                "Value": "0x40020000",
+                "Defines": [
+                  "STM32F401"
+                ]
+            },
+            {
+                "Key": "[GPIOB]",
+                "Value": "0x40020400",
+                "Defines": [
+                  "STM32F401"
+                ]
+            },
+            {
+                "Key": "[GPIOC]",
+                "Value": "0x40020800",
+                "Defines": [
+                  "STM32F401"
+                ]
+            },
+            {
+                "Key": "[GPIOD]",
+                "Value": "0x40020C00",
+                "Defines": [
+                  "SAM3X8E"
+                ]
+            },
+            {
+                "Key": "[GPIOA]",
+                "Value": "0x400E0E00",
+                "Defines": [
+                  "SAM3X8E"
+                ]
+            },
+            {
+                "Key": "[GPIOB]",
+                "Value": "0x400E1000",
+                "Defines": [
+                  "SAM3X8E"
+                ]
+            },
+            {
+                "Key": "[GPIOC]",
+                "Value": "0x400E1200",
+                "Defines": [
+                  "SAM3X8E"
+                ]
+            },
+            {
+                "Key": "[GPIOD]",
+                "Value": "0x400E1400",
+                "Defines": [
+                  "SAM3X8E"
+                ]
+            }
+        ],
+        "KeyPatterns": [
+        ]
+    }
+]
