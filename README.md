@@ -1,3 +1,3 @@
-# Include library for Atmega family
-This is a Specialliy Project for Atmega family. You can include it to your Yama Project.
-I will test it only on Atmega328p.
+# Include library for ARM-Cortex-M family
+This is a Specialliy Project for ARM-Cortex-M family. You can include it to your Yama Project.
+Currently only testet on STM32F303 ... next i will test it on STM32F401

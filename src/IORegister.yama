@@ -96,7 +96,7 @@ namespace "ARM.CortexM"
 
     public enum IORegisterMode
     {
-        Read 0x8,
+        Read 0x0,
         Write 0x1
     }
 }

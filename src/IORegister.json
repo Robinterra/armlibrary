@@ -79,7 +79,7 @@
                 "cmp r2, #0x08",
                 "blt [JUMPTO[0]]",
                 "orr r1, r1, #4",
-                "asr r2, r2, #0x4",
+                "lsr r2, r2, #0x4",
                 "[JUMPTO[0]]:",
                 "lsl r3, r3, r2",
                 "str r3, [r1]"
@@ -104,13 +104,28 @@
                 "Mode": "Write",
                 "Description": null,
                 "Keys": [
+                    {
+                        "Name": "[JUMPTO]",
+                        "Values": [
+                        "1"
+                        ]
+                    },
+                    {
+                        "Name": "[BSRR]",
+                        "Values": null
+                    }
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                    "orr r1, r1, #0x0c",
-                    "and r3, r3, #0x1",
-                    "lsl r3, r3, r2",
-                    "str r3, [r1]"
+                    "orr r0, r0, #[BSRR]",
+                    "and r2, r2, #0x1",
+                    "cmp r2, #1",
+                    "beq [JUMPTO[0]]",
+                    "mov r2, #1",
+                    "lsl r2, r2, #0x10",
+                    "[JUMPTO[0]]:",
+                    "lsl r2, r2, r1",
+                    "str r2, [r0]"
                 ]
             }
        ],
@@ -137,39 +152,15 @@
                 ]
             },
             {
-                "Key": "[GPIOD]",
-                "Value": "0x40020C00",
-                "Defines": [
-                  "SAM3X8E"
-                ]
-            },
-            {
                 "Key": "[GPIOA]",
-                "Value": "0x400E0E00",
+                "Value": "0x48000000",
                 "Defines": [
-                  "SAM3X8E"
+                  "STM32F303"
                 ]
             },
             {
-                "Key": "[GPIOB]",
-                "Value": "0x400E1000",
-                "Defines": [
-                  "SAM3X8E"
-                ]
-            },
-            {
-                "Key": "[GPIOC]",
-                "Value": "0x400E1200",
-                "Defines": [
-                  "SAM3X8E"
-                ]
-            },
-            {
-                "Key": "[GPIOD]",
-                "Value": "0x400E1400",
-                "Defines": [
-                  "SAM3X8E"
-                ]
+                "Key": "[BSRR]",
+                "Value": "0x18"
             }
         ],
         "KeyPatterns": [
