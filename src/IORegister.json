@@ -79,7 +79,7 @@
                     "cmp r1, #0x08",
                     "blt [JUMPTO[0]]",
                     "orr r0, r0, #4",
-                    "asr r1, r1, #0x4",
+                    "lsr r1, r1, #0x4",
                     "[JUMPTO[0]]:",
                     "ldr r12, [r0]",
                     "lsl r2, r2, r1",
