@@ -49,7 +49,7 @@ namespace "ARM.CortexM"
 
         // -----------------------------------------------
 
-        public static bool EnableOutput ( int port, int pin )
+        public static bool EnableOutput ( int port, int pin, int mode )
         {
             #defalgo IORegister,EnableOutput:
         }
@@ -92,7 +92,7 @@ namespace "ARM.CortexM"
 
     public enum IORegisterMode
     {
-        Read 0x8,
+        Read 0x0,
         Write 0x1
     }
 }

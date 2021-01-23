@@ -76,15 +76,17 @@
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                    "cmp r1, #0x08",
-                    "blt [JUMPTO[0]]",
-                    "orr r0, r0, #4",
-                    "lsr r1, r1, #0x4",
-                    "[JUMPTO[0]]:",
-                    "ldr r12, [r0]",
                     "lsl r2, r2, r1",
-                    "orr r2, r12, r2",
-                    "str r2, [r0]"
+                    "str r1, [r0]",
+                    "cmp r2, #0x0",
+                    "bne [JUMPTO[0]]",
+                    "mov r12, #1",
+                    "lsl r1, r12, r1",
+                    "orr r12, r0, #0x14",
+                    "str r1, [r12]",
+                    "[JUMPTO[0]]:",
+                    "orr r12, r0, #0x10",
+                    "str r2, [r12]"
                 ]
             },
             {
@@ -95,7 +97,7 @@
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                "orr r0, r0, #0x08",
+                "orr r0, r0, #0x3C",
                 "ldr r12, [r0]",
                 "lsr r12, r12, r1",
                 "and r12, r12, #0x1"
