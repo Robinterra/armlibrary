@@ -64,7 +64,7 @@
             },
             {
                 "Name": "IORegister",
-                "Mode": "EnableOutput",
+                "Mode": "InitPort",
                 "Description": null,
                 "Keys": [
                     {

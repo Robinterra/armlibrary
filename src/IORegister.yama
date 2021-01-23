@@ -49,9 +49,9 @@ namespace "ARM.CortexM"
 
         // -----------------------------------------------
 
-        public static bool EnableOutput ( int port, int pin, int mode )
+        public static bool InitPort ( int port, int pin, int mode )
         {
-            #defalgo IORegister,EnableOutput:
+            #defalgo IORegister,InitPort:
         }
 
         // -----------------------------------------------
