@@ -11,37 +11,37 @@ namespace "ARM.CortexM"
 
         // -----------------------------------------------
 
-        public static int PortA()
+        public static Gpio PortA()
         {
-            return #defalgo IORegister,PortA:;
+            #defalgo IORegister,PortA:;
         }
 
         // -----------------------------------------------
 
-        public static int PortB()
+        public static Gpio PortB()
         {
-            return #defalgo IORegister,PortB:;
+            #defalgo IORegister,PortB:;
         }
 
         // -----------------------------------------------
 
-        public static int PortC()
+        public static Gpio PortC()
         {
-            return #defalgo IORegister,PortC:;
+            #defalgo IORegister,PortC:;
         }
 
         // -----------------------------------------------
 
-        public static int PortD()
+        public static Gpio PortD()
         {
-            return #defalgo IORegister,PortD:;
+            #defalgo IORegister,PortD:;
         }
 
         // -----------------------------------------------
 
-        public static int AdcStartRegister()
+        public static int Adc1StartRegister()
         {
-            false
+            #defalgo IORegister,Adc1:;
         }
 
         // -----------------------------------------------
@@ -65,7 +65,9 @@ namespace "ARM.CortexM"
         */
         public static bool InitAdc (  )
         {
-            false
+            #defalgo IORegister,InitAdc:
+
+            return true;
         }
 
         // -----------------------------------------------
@@ -81,7 +83,7 @@ namespace "ARM.CortexM"
 
         public static int Read ( int port, int pin )
         {
-            return #defalgo IORegister,Read:;
+            #defalgo IORegister,Read:;
         }
 
         // -----------------------------------------------

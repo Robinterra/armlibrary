@@ -1,0 +1,54 @@
+namespace "ARM.CortexM"
+{
+    using "System";
+
+    public class Gpio
+    {
+
+        // -----------------------------------------------
+
+        #region vars
+
+        // -----------------------------------------------
+
+        public int MODER;
+        public int OTYPER;
+        public int OSPEEDR;
+        public int PUPDR;
+        public int IDR;
+        public int ODR;
+        public int BSRR;
+        public int LCKR;
+        public int AFRL;
+        public int AFRH;
+
+        // -----------------------------------------------
+
+        #endregion vars
+
+        // -----------------------------------------------
+
+        #region methods
+
+        // -----------------------------------------------
+
+        public bool InitPort ( int pin, int mode )
+        {
+            this.MODER = (mode << pin) | this.MODER;
+        }
+
+        // -----------------------------------------------
+
+        public bool Read ( int pin )
+        {
+            (this.IDR >> pin) & 0x1;
+        }
+
+        // -----------------------------------------------
+
+        #endregion methods
+
+        // -----------------------------------------------
+
+    }
+}
