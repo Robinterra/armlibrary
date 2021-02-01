@@ -150,6 +150,30 @@
             },
             {
                 "Name": "IORegister",
+                "Mode": "ReadAnalog",
+                "Description": null,
+                "Keys": [
+                    {
+                        "Name": "[CR1]",
+                        "Values": null
+                    },
+                    {
+                        "Name": "[DR]",
+                        "Values": null
+                    }
+                ],
+                "PostKeys": [],
+                "AssemblyCommands": [
+                "orr r2, r0, #[CR1]",
+                "ldr r12, [r2]",
+                "orr r12, r12, r1",
+                "str r12, [r2]",
+                "orr r0, r0, #[DR]",
+                "ldr r12, [r0]"
+                ]
+            },
+            {
+                "Name": "IORegister",
                 "Mode": "Write",
                 "Description": null,
                 "Keys": [
@@ -226,8 +250,16 @@
                 "Value": "0x18"
             },
             {
+                "Key": "[CR1]",
+                "Value": "0x04"
+            },
+            {
                 "Key": "[CR2]",
                 "Value": "0x08"
+            },
+            {
+                "Key": "[DR]",
+                "Value": "0x4C"
             },
             {
                 "Key": "[IDR]",

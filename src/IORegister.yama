@@ -103,9 +103,9 @@ namespace "ARM.CortexM"
         ADC_DR // read from hier
         bit 15:0
         */
-        public static int ReadAnalog ( int port, int pin, int channel )
+        public static int ReadAnalog ( int port, int channel )
         {
-            false
+            #defalgo IORegister,Analog:;
         }
 
         // -----------------------------------------------
