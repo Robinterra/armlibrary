@@ -34,7 +34,7 @@ namespace "ARM.CortexM"
 
         public bool InitPort ( int pin, int mode )
         {
-            this.MODER = (mode << pin) | this.MODER;
+            this.MODER = (mode << (pin << 1)) | this.MODER;
         }
 
         // -----------------------------------------------
