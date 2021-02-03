@@ -11,32 +11,37 @@ namespace "ARM.CortexM"
 
         // -----------------------------------------------
 
-        public static int PortA()
+        public static Gpio PortA()
         {
-            return #defalgo IORegister,PortA:;
+            #defalgo IORegister,PortA:;
         }
 
         // -----------------------------------------------
 
-        public static int PortB()
+        public static Gpio PortB()
         {
-            return #defalgo IORegister,PortB:;
+            #defalgo IORegister,PortB:;
         }
 
         // -----------------------------------------------
 
-        
-        public static int PortC()
+        public static Gpio PortC()
         {
-            return #defalgo IORegister,PortC:;
+            #defalgo IORegister,PortC:;
         }
 
         // -----------------------------------------------
 
-        
-        public static int PortD()
+        public static Gpio PortD()
         {
-            return #defalgo IORegister,PortD:;
+            #defalgo IORegister,PortD:;
+        }
+
+        // -----------------------------------------------
+
+        public static int Adc1StartRegister()
+        {
+            #defalgo IORegister,Adc1:;
         }
 
         // -----------------------------------------------
@@ -46,6 +51,24 @@ namespace "ARM.CortexM"
         // -----------------------------------------------
 
         #region methods
+
+        // -----------------------------------------------
+
+        //RCC_APB2ENR
+        //Bit 8 ADC1EN: ADC1 clock enable
+        /*
+        ADC_CR2
+        Bit 0 ADON: A/D Converter ON / OFF
+        This bit is set and cleared by software.
+        Note: 0: Disable ADC conversion and go to power down mode
+        1: Enable ADC
+        */
+        public static bool InitAdc (  )
+        {
+            #defalgo IORegister,InitAdc:
+
+            return true;
+        }
 
         // -----------------------------------------------
 
@@ -60,7 +83,29 @@ namespace "ARM.CortexM"
 
         public static int Read ( int port, int pin )
         {
-            return #defalgo IORegister,Read:;
+            #defalgo IORegister,Read:;
+        }
+
+        // -----------------------------------------------
+
+        /*
+        ADC_CR1
+        Bits 4:0 AWDCH[4:0]: Analog watchdog channel select bits
+        These bits are set and cleared by software. They select the input channel to be guarded by
+        the analog watchdog.
+        Note: 00000: ADC analog input Channel0
+        00001: ADC analog input Channel1
+        ...
+        01111: ADC analog input Channel15
+        10000: ADC analog input Channel16
+        10001: ADC analog input Channel17
+        10010: ADC analog input Channel18
+        ADC_DR // read from hier
+        bit 15:0
+        */
+        public static int ReadAnalog ( int port, int channel )
+        {
+            #defalgo IORegister,ReadAnalog:;
         }
 
         // -----------------------------------------------
@@ -97,6 +142,7 @@ namespace "ARM.CortexM"
     public enum IORegisterMode
     {
         Read 0x0,
-        Write 0x1
+        Write 0x1,
+        Analog 0x3
     }
 }

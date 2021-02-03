@@ -64,6 +64,21 @@
             },
             {
                 "Name": "IORegister",
+                "Mode": "Adc1",
+                "Description": null,
+                "Keys": [
+                    {
+                        "Name": "[ADC1]",
+                        "Values": null
+                    }
+                ],
+                "PostKeys": [],
+                "AssemblyCommands": [
+                "ldr r12, =[ADC1]"
+                ]
+            },
+            {
+                "Name": "IORegister",
                 "Mode": "InitPort",
                 "Description": null,
                 "Keys": [
@@ -79,16 +94,112 @@
             },
             {
                 "Name": "IORegister",
-                "Mode": "Read",
+                "Mode": "InitAdc",
                 "Description": null,
                 "Keys": [
+                    {
+                        "Name": "[RCC_APB2ENR]",
+                        "Values": null
+                    },
+                    {
+                        "Name": "[ADC1EN_RCC_POS]",
+                        "Values": null
+                    },
+                    {
+                        "Name": "[ADC1]",
+                        "Values": null
+                    },
+                    {
+                        "Name": "[CR2]",
+                        "Values": null
+                    },
+                    {
+                        "Name": "[CR1]",
+                        "Values": null
+                    }
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                "orr r1, r1, #0x08",
-                "ldr r12, [r1]",
-                "asr r12, r12, r2",
+                    "ldr r0,=[RCC_APB2ENR]",
+                    "ldr r2, [r0]",
+                    "mov r1, #0x1",
+                    "lsl r1, r1, #[ADC1EN_RCC_POS]",
+                    "orr r1,r1,r2",
+                    "str r1,[r0]",
+                    "ldr r0,=[ADC1]",
+                    "orr r3, r0, #[CR2]",
+                    "ldr r2, [r3]",
+                    "mov r1, #0x1",
+                    "orr r1,r1,r2",
+                    "str r1,[r3]",
+                    "orr r3, r0, #[CR1]",
+                    "ldr r2, [r3]",
+                    "mov r1, #0x200",
+                    "orr r1,r1,r2",
+                    "str r1,[r3]"
+                ]
+            },
+            {
+                "Name": "IORegister",
+                "Mode": "Read",
+                "Description": null,
+                "Keys": [
+                    {
+                        "Name": "[IDR]",
+                        "Values": null
+                    }
+                ],
+                "PostKeys": [],
+                "AssemblyCommands": [
+                "orr r0, r0, #[IDR]",
+                "ldr r12, [r0]",
+                "lsr r12, r12, r1",
                 "and r12, r12, #0x1"
+                ]
+            },
+            {
+                "Name": "IORegister",
+                "Mode": "ReadAnalog",
+                "Description": null,
+                "Keys": [
+                    {
+                        "Name": "[SQR1]",
+                        "Values": null
+                    },
+                    {
+                        "Name": "[DR]",
+                        "Values": null
+                    },
+                    {
+                        "Name": "[CR2]",
+                        "Values": null
+                    },
+                    {
+                        "Name": "[JUMPTO]",
+                        "Values": [
+                        "1"
+                        ]
+                    }
+                ],
+                "PostKeys": [],
+                "AssemblyCommands": [
+                "orr r2, r0, #[SQR1]",
+                "str r1, [r2]",
+                "mov r12, #0",
+                "str r12, [r0]",
+                "orr r1, r0, #[CR2]",
+                "ldr r2, [r1]",
+                "mov r12, #1",
+                "lsl r12, r12, #30",
+                "orr r12, r12, r2",
+                "str r12, [r1]",
+                "[JUMPTO[0]]:",
+                "ldr r12, [r0]",
+                "and r12, r12, #0x2",
+                "cmp r12, #0",
+                "beq [JUMPTO[0]]",
+                "orr r0, r0, #[DR]",
+                "ldr r12, [r0]"
                 ]
             },
             {
@@ -123,6 +234,27 @@
        ],
         "AdvancedKeyReplaces": [
             {
+                "Key": "[ADC1]",
+                "Value": "0x40012000",
+                "Defines": [
+                  "STM32F401"
+                ]
+            },
+            {
+                "Key": "[RCC_APB2ENR]",
+                "Value": "0x40023844",
+                "Defines": [
+                  "STM32F401"
+                ]
+            },
+            {
+                "Key": "[ADC1EN_RCC_POS]",
+                "Value": "0x8",
+                "Defines": [
+                  "STM32F401"
+                ]
+            },
+            {
                 "Key": "[GPIOA]",
                 "Value": "0x40020000",
                 "Defines": [
@@ -153,6 +285,26 @@
             {
                 "Key": "[BSRR]",
                 "Value": "0x18"
+            },
+            {
+                "Key": "[CR1]",
+                "Value": "0x04"
+            },
+            {
+                "Key": "[CR2]",
+                "Value": "0x08"
+            },
+            {
+                "Key": "[DR]",
+                "Value": "0x4C"
+            },
+            {
+                "Key": "[SQR1]",
+                "Value": "0x34"
+            },
+            {
+                "Key": "[IDR]",
+                "Value": "0x10"
             }
         ],
         "KeyPatterns": [
