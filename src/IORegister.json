@@ -10,11 +10,16 @@
                     {
                         "Name": "[GPIOA]",
                         "Values": null
-                    }
+                    },
+                    {
+                        "Name": "[SSAPUSH]",
+                        "Values": [
+                        ]
+                      }
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                "ldr r12, =[GPIOA]"
+                "ldr [SSAPUSH], =[GPIOA]"
                 ]
             },
             {
@@ -25,11 +30,16 @@
                     {
                         "Name": "[GPIOB]",
                         "Values": null
-                    }
+                    },
+                    {
+                        "Name": "[SSAPUSH]",
+                        "Values": [
+                        ]
+                      }
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                "ldr r12, =[GPIOB]"
+                "ldr [SSAPUSH], =[GPIOB]"
                 ]
             },
             {
@@ -40,11 +50,16 @@
                     {
                         "Name": "[GPIOC]",
                         "Values": null
-                    }
+                    },
+                    {
+                        "Name": "[SSAPUSH]",
+                        "Values": [
+                        ]
+                      }
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                "ldr r12, =[GPIOC]"
+                "ldr [SSAPUSH], =[GPIOC]"
                 ]
             },
             {
@@ -55,11 +70,16 @@
                     {
                         "Name": "[GPIOD]",
                         "Values": null
-                    }
+                    },
+                    {
+                        "Name": "[SSAPUSH]",
+                        "Values": [
+                        ]
+                      }
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                "ldr r12, =[GPIOD]"
+                "ldr [SSAPUSH], =[GPIOD]"
                 ]
             },
             {
@@ -70,11 +90,16 @@
                     {
                         "Name": "[ADC1]",
                         "Values": null
-                    }
+                    },
+                    {
+                        "Name": "[SSAPUSH]",
+                        "Values": [
+                        ]
+                      }
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                "ldr r12, =[ADC1]"
+                "ldr [SSAPUSH], =[ADC1]"
                 ]
             },
             {
@@ -82,14 +107,25 @@
                 "Mode": "InitPort",
                 "Description": null,
                 "Keys": [
+                    {
+                        "Name": "[SSAPOP]",
+                        "Values": [
+                          "2"
+                        ]
+                      },
+                      {
+                        "Name": "[SSAPUSH]",
+                        "Values": [
+                        ]
+                      }
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                "lsl r1, r1, #0x1",
-                "lsl r2, r2, r1",
-                "ldr r1,[r0]",
-                "orr r2, r2, r1",
-                "str r2, [r0]"
+                "lsl r1, [SSAPOP[0]], #0x1",
+                "lsl r0, r0, r1",
+                "ldr r1,[[SSAPOP[1]]]",
+                "orr r0, r0, r1",
+                "str r0, [[SSAPOP[1]]]"
                 ]
             },
             {
@@ -121,22 +157,22 @@
                 "PostKeys": [],
                 "AssemblyCommands": [
                     "ldr r0,=[RCC_APB2ENR]",
-                    "ldr r2, [r0]",
+                    "ldr r12, [r0]",
                     "mov r1, #0x1",
                     "lsl r1, r1, #[ADC1EN_RCC_POS]",
-                    "orr r1,r1,r2",
+                    "orr r1,r1,r12",
                     "str r1,[r0]",
                     "ldr r0,=[ADC1]",
-                    "orr r3, r0, #[CR2]",
-                    "ldr r2, [r3]",
+                    "orr r11, r0, #[CR2]",
+                    "ldr r12, [r11]",
                     "mov r1, #0x1",
-                    "orr r1,r1,r2",
-                    "str r1,[r3]",
-                    "orr r3, r0, #[CR1]",
-                    "ldr r2, [r3]",
+                    "orr r1,r1,r12",
+                    "str r1,[r11]",
+                    "orr r11, r0, #[CR1]",
+                    "ldr r12, [r11]",
                     "mov r1, #0x200",
-                    "orr r1,r1,r2",
-                    "str r1,[r3]"
+                    "orr r1,r1,r12",
+                    "str r1,[r11]"
                 ]
             },
             {
@@ -147,14 +183,25 @@
                     {
                         "Name": "[IDR]",
                         "Values": null
-                    }
+                    },
+                    {
+                        "Name": "[SSAPOP]",
+                        "Values": [
+                          "2"
+                        ]
+                      },
+                      {
+                        "Name": "[SSAPUSH]",
+                        "Values": [
+                        ]
+                      }
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                "orr r0, r0, #[IDR]",
-                "ldr r12, [r0]",
-                "lsr r12, r12, r1",
-                "and r12, r12, #0x1"
+                "orr [SSAPOP[1]], [SSAPOP[1]], #[IDR]",
+                "ldr r12, [[SSAPOP[1]]]",
+                "lsr r12, r12, [SSAPOP[0]]",
+                "and [SSAPUSH], r12, #0x1"
                 ]
             },
             {
@@ -179,27 +226,38 @@
                         "Values": [
                         "1"
                         ]
-                    }
+                    },
+                    {
+                        "Name": "[SSAPOP]",
+                        "Values": [
+                          "2"
+                        ]
+                      },
+                      {
+                        "Name": "[SSAPUSH]",
+                        "Values": [
+                        ]
+                      }
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                "orr r2, r0, #[SQR1]",
-                "str r1, [r2]",
+                "orr r1, [SSAPOP[1]], #[SQR1]",
+                "str [SSAPOP[0]], [r1]",
                 "mov r12, #0",
-                "str r12, [r0]",
-                "orr r1, r0, #[CR2]",
-                "ldr r2, [r1]",
+                "str r12, [[SSAPOP[1]]]",
+                "orr [SSAPOP[0]], [SSAPOP[1]], #[CR2]",
+                "ldr r1, [[SSAPOP[0]]]",
                 "mov r12, #1",
                 "lsl r12, r12, #30",
-                "orr r12, r12, r2",
-                "str r12, [r1]",
+                "orr r12, r12, r1",
+                "str r12, [[SSAPOP[0]]]",
                 "[JUMPTO[0]]:",
-                "ldr r12, [r0]",
+                "ldr r12, [[SSAPOP[1]]]",
                 "and r12, r12, #0x2",
                 "cmp r12, #0",
                 "beq [JUMPTO[0]]",
-                "orr r0, r0, #[DR]",
-                "ldr r12, [r0]"
+                "orr [SSAPOP[1]], [SSAPOP[1]], #[DR]",
+                "ldr [SSAPUSH], [[SSAPOP[1]]]"
                 ]
             },
             {
@@ -216,19 +274,25 @@
                     {
                         "Name": "[BSRR]",
                         "Values": null
-                    }
+                    },
+                    {
+                        "Name": "[SSAPOP]",
+                        "Values": [
+                          "3"
+                        ]
+                      }
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                    "orr r0, r0, #[BSRR]",
-                    "and r2, r2, #0x1",
-                    "cmp r2, #1",
+                    "orr [SSAPOP[2]], [SSAPOP[2]], #[BSRR]",
+                    "and [SSAPOP[0]], [SSAPOP[0]], #0x1",
+                    "cmp [SSAPOP[0]], #1",
                     "beq [JUMPTO[0]]",
-                    "mov r2, #1",
-                    "lsl r2, r2, #0x10",
+                    "mov [SSAPOP[0]], #1",
+                    "lsl [SSAPOP[0]], [SSAPOP[0]], #0x10",
                     "[JUMPTO[0]]:",
-                    "lsl r2, r2, r1",
-                    "str r2, [r0]"
+                    "lsl [SSAPOP[0]], [SSAPOP[0]], [SSAPOP[1]]",
+                    "str [SSAPOP[0]], [[SSAPOP[2]]]"
                 ]
             }
        ],
