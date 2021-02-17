@@ -242,7 +242,7 @@
                 "PostKeys": [],
                 "AssemblyCommands": [
                 "orr r1, [SSAPOP[1]], #[SQR1]",
-                "str [SSAPOP[0]], [r2]",
+                "str [SSAPOP[0]], [r1]",
                 "mov r12, #0",
                 "str r12, [[SSAPOP[1]]]",
                 "orr [SSAPOP[0]], [SSAPOP[1]], #[CR2]",
