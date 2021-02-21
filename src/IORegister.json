@@ -104,16 +104,14 @@
             },
             {
                 "Name": "IORegister",
-                "Mode": "InitPort",
+                "Mode": "RccRoot",
                 "Description": null,
                 "Keys": [
                     {
-                        "Name": "[SSAPOP]",
-                        "Values": [
-                          "2"
-                        ]
-                      },
-                      {
+                        "Name": "[RCC_ROOT]",
+                        "Values": null
+                    },
+                    {
                         "Name": "[SSAPUSH]",
                         "Values": [
                         ]
@@ -121,76 +119,19 @@
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                "lsl r1, [SSAPOP[0]], #0x1",
-                "lsl r0, r0, r1",
-                "ldr r1,[[SSAPOP[1]]]",
-                "orr r0, r0, r1",
-                "str r0, [[SSAPOP[1]]]"
+                "ldr [SSAPUSH], =[RCC_ROOT]"
                 ]
             },
             {
                 "Name": "IORegister",
-                "Mode": "InitAdc",
+                "Mode": "EnableAdc1",
                 "Description": null,
                 "Keys": [
-                    {
-                        "Name": "[RCC_APB2ENR]",
-                        "Values": null
-                    },
                     {
                         "Name": "[ADC1EN_RCC_POS]",
                         "Values": null
                     },
                     {
-                        "Name": "[ADC1]",
-                        "Values": null
-                    },
-                    {
-                        "Name": "[CR2]",
-                        "Values": null
-                    },
-                    {
-                        "Name": "[CR1]",
-                        "Values": null
-                    }
-                ],
-                "PostKeys": [],
-                "AssemblyCommands": [
-                    "ldr r0,=[RCC_APB2ENR]",
-                    "ldr r12, [r0]",
-                    "mov r1, #0x1",
-                    "lsl r1, r1, #[ADC1EN_RCC_POS]",
-                    "orr r1,r1,r12",
-                    "str r1,[r0]",
-                    "ldr r0,=[ADC1]",
-                    "orr r11, r0, #[CR2]",
-                    "ldr r12, [r11]",
-                    "mov r1, #0x1",
-                    "orr r1,r1,r12",
-                    "str r1,[r11]",
-                    "orr r11, r0, #[CR1]",
-                    "ldr r12, [r11]",
-                    "mov r1, #0x200",
-                    "orr r1,r1,r12",
-                    "str r1,[r11]"
-                ]
-            },
-            {
-                "Name": "IORegister",
-                "Mode": "Read",
-                "Description": null,
-                "Keys": [
-                    {
-                        "Name": "[IDR]",
-                        "Values": null
-                    },
-                    {
-                        "Name": "[SSAPOP]",
-                        "Values": [
-                          "2"
-                        ]
-                      },
-                      {
                         "Name": "[SSAPUSH]",
                         "Values": [
                         ]
@@ -198,101 +139,8 @@
                 ],
                 "PostKeys": [],
                 "AssemblyCommands": [
-                "orr [SSAPOP[1]], [SSAPOP[1]], #[IDR]",
-                "ldr r12, [[SSAPOP[1]]]",
-                "lsr r12, r12, [SSAPOP[0]]",
-                "and [SSAPUSH], r12, #0x1"
-                ]
-            },
-            {
-                "Name": "IORegister",
-                "Mode": "ReadAnalog",
-                "Description": null,
-                "Keys": [
-                    {
-                        "Name": "[SQR1]",
-                        "Values": null
-                    },
-                    {
-                        "Name": "[DR]",
-                        "Values": null
-                    },
-                    {
-                        "Name": "[CR2]",
-                        "Values": null
-                    },
-                    {
-                        "Name": "[JUMPTO]",
-                        "Values": [
-                        "1"
-                        ]
-                    },
-                    {
-                        "Name": "[SSAPOP]",
-                        "Values": [
-                          "2"
-                        ]
-                      },
-                      {
-                        "Name": "[SSAPUSH]",
-                        "Values": [
-                        ]
-                      }
-                ],
-                "PostKeys": [],
-                "AssemblyCommands": [
-                "orr r1, [SSAPOP[1]], #[SQR1]",
-                "str [SSAPOP[0]], [r1]",
-                "mov r12, #0",
-                "str r12, [[SSAPOP[1]]]",
-                "orr [SSAPOP[0]], [SSAPOP[1]], #[CR2]",
-                "ldr r1, [[SSAPOP[0]]]",
-                "mov r12, #1",
-                "lsl r12, r12, #30",
-                "orr r12, r12, r1",
-                "str r12, [[SSAPOP[0]]]",
-                "[JUMPTO[0]]:",
-                "ldr r12, [[SSAPOP[1]]]",
-                "and r12, r12, #0x2",
-                "cmp r12, #0",
-                "beq [JUMPTO[0]]",
-                "orr [SSAPOP[1]], [SSAPOP[1]], #[DR]",
-                "ldr [SSAPUSH], [[SSAPOP[1]]]"
-                ]
-            },
-            {
-                "Name": "IORegister",
-                "Mode": "Write",
-                "Description": null,
-                "Keys": [
-                    {
-                        "Name": "[JUMPTO]",
-                        "Values": [
-                        "1"
-                        ]
-                    },
-                    {
-                        "Name": "[BSRR]",
-                        "Values": null
-                    },
-                    {
-                        "Name": "[SSAPOP]",
-                        "Values": [
-                          "3"
-                        ]
-                      }
-                ],
-                "PostKeys": [],
-                "AssemblyCommands": [
-                    "orr [SSAPOP[2]], [SSAPOP[2]], #[BSRR]",
-                    "and [SSAPOP[0]], [SSAPOP[0]], #0x1",
-                    "cmp [SSAPOP[0]], #1",
-                    "beq [JUMPTO[0]]",
-                    "mov [SSAPOP[0]], #1",
-                    "lsl [SSAPOP[0]], [SSAPOP[0]], #0x10",
-                    "[JUMPTO[0]]:",
-                    "lsl [SSAPOP[0]], [SSAPOP[0]], [SSAPOP[1]]",
-                    "str [SSAPOP[0]], [[SSAPOP[2]]]"
+                    "mov r1, #0x1",
+                    "lsl [SSAPUSH], r1, #[ADC1EN_RCC_POS]"
                 ]
             }
        ],
@@ -307,6 +155,13 @@
             {
                 "Key": "[RCC_APB2ENR]",
                 "Value": "0x40023844",
+                "Defines": [
+                  "STM32F401"
+                ]
+            },
+            {
+                "Key": "[RCC_ROOT]",
+                "Value": "0x40023800",
                 "Defines": [
                   "STM32F401"
                 ]
@@ -345,30 +200,6 @@
                 "Defines": [
                   "STM32F303"
                 ]
-            },
-            {
-                "Key": "[BSRR]",
-                "Value": "0x18"
-            },
-            {
-                "Key": "[CR1]",
-                "Value": "0x04"
-            },
-            {
-                "Key": "[CR2]",
-                "Value": "0x08"
-            },
-            {
-                "Key": "[DR]",
-                "Value": "0x4C"
-            },
-            {
-                "Key": "[SQR1]",
-                "Value": "0x34"
-            },
-            {
-                "Key": "[IDR]",
-                "Value": "0x10"
             }
         ],
         "KeyPatterns": [

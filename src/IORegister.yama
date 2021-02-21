@@ -39,9 +39,16 @@ namespace "ARM.CortexM"
 
         // -----------------------------------------------
 
-        public static int Adc1StartRegister()
+        public static AnalogToDigitalConverter Adc1()
         {
             #defalgo IORegister,Adc1:;
+        }
+
+        // -----------------------------------------------
+
+        public static ResetAndClockControl Rcc()
+        {
+            #defalgo IORegister,RccRoot:;
         }
 
         // -----------------------------------------------
@@ -51,71 +58,6 @@ namespace "ARM.CortexM"
         // -----------------------------------------------
 
         #region methods
-
-        // -----------------------------------------------
-
-        //RCC_APB2ENR
-        //Bit 8 ADC1EN: ADC1 clock enable
-        /*
-        ADC_CR2
-        Bit 0 ADON: A/D Converter ON / OFF
-        This bit is set and cleared by software.
-        Note: 0: Disable ADC conversion and go to power down mode
-        1: Enable ADC
-        */
-        public static bool InitAdc (  )
-        {
-            #defalgo IORegister,InitAdc:
-
-            return true;
-        }
-
-        // -----------------------------------------------
-
-        public static bool InitPort ( int port, int pin, int mode )
-        {
-            #defalgo IORegister,InitPort:
-
-            return true;
-        }
-
-        // -----------------------------------------------
-
-        public static int Read ( int port, int pin )
-        {
-            #defalgo IORegister,Read:;
-        }
-
-        // -----------------------------------------------
-
-        /*
-        ADC_CR1
-        Bits 4:0 AWDCH[4:0]: Analog watchdog channel select bits
-        These bits are set and cleared by software. They select the input channel to be guarded by
-        the analog watchdog.
-        Note: 00000: ADC analog input Channel0
-        00001: ADC analog input Channel1
-        ...
-        01111: ADC analog input Channel15
-        10000: ADC analog input Channel16
-        10001: ADC analog input Channel17
-        10010: ADC analog input Channel18
-        ADC_DR // read from hier
-        bit 15:0
-        */
-        public static int ReadAnalog ( int port, int channel )
-        {
-            #defalgo IORegister,ReadAnalog:;
-        }
-
-        // -----------------------------------------------
-
-        public static bool Write ( int port, int pin, int value )
-        {
-            #defalgo IORegister,Write:
-
-            return true;
-        }
 
         // -----------------------------------------------
 

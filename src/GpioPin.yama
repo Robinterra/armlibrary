@@ -1,8 +1,9 @@
-namespace "ARM.CortexM"
+namespace "ARM.CortexM.Advanced"
 {
     using "System";
+    using "System.IO";
 
-    public class Gpio
+    public class GpioPin
     {
 
         // -----------------------------------------------
@@ -11,16 +12,8 @@ namespace "ARM.CortexM"
 
         // -----------------------------------------------
 
-        public int MODER;
-        public int OTYPER;
-        public int OSPEEDR;
-        public int PUPDR;
-        public int IDR;
-        public int ODR;
-        public int BSRR;
-        public int LCKR;
-        public int AFRL;
-        public int AFRH;
+        public Gpio gpioPort;
+        public int pin;
 
         // -----------------------------------------------
 
@@ -28,34 +21,44 @@ namespace "ARM.CortexM"
 
         // -----------------------------------------------
 
+        #region ctor
+
+        // -----------------------------------------------
+
+        public this new ( Gpio gpio, int pin )
+        {
+            this.gpioPort =  gpio;
+            this.pin = pin;
+            this;
+        }
+
+        // -----------------------------------------------
+
+        public this ~ (  )
+        {
+
+        }
+
+        // -----------------------------------------------
+
+        #endregion ctor
+
+        // -----------------------------------------------
+
         #region methods
 
         // -----------------------------------------------
 
-        public bool InitPort ( int pin, int mode )
+        public bool Read (  )
         {
-            this.MODER = (mode << (pin << 1)) | this.MODER;
+            this.gpioPort.Read ( this.pin );
         }
 
         // -----------------------------------------------
 
-        public bool Read ( int pin )
+        public bool Write ( int value )
         {
-            (this.IDR >> pin) & 0x1;
-        }
-
-        // -----------------------------------------------
-
-        public bool Write ( int pin, int value )
-        {
-            value = value & 0x1;
-
-            if (value != 0x1)
-            {
-                value = 1 << 0x10;
-            }
-
-            this.BSRR = value << pin;
+            this.gpioPort.Write ( this.pin, value );
         }
 
         // -----------------------------------------------
