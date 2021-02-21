@@ -1,0 +1,97 @@
+namespace "ARM.CortexM"
+{
+    using "System";
+
+    public class AnalogToDigitalConverter
+    {
+
+        // -----------------------------------------------
+
+        #region vars
+
+        // -----------------------------------------------
+
+        public int StatusRegister;
+        public int ControlRegister1;
+        public int ControlRegister2;
+        public int SampleTimeRegister1;
+        public int SampleTimeRegister2;
+        public int InjectedChannelDataOffsetRegister1;
+        public int InjectedChannelDataOffsetRegister2;
+        public int InjectedChannelDataOffsetRegister3;
+        public int InjectedChannelDataOffsetRegister4;
+        public int WatchdogHigherThresholdRegister;
+        public int WatchdogLowerThresholdRegister;
+        public int RegularSequenceRegister1;
+        public int RegularSequenceRegister2;
+        public int RegularSequenceRegister3;
+        public int InjectedSequenceRegister;
+        public int InjectedDataRegister1;
+        public int InjectedDataRegister2;
+        public int InjectedDataRegister3;
+        public int InjectedDataRegister4;
+        public int RegularDataRegister;
+
+        // -----------------------------------------------
+
+        #endregion vars
+
+        // -----------------------------------------------
+
+        #region methods
+
+        // -----------------------------------------------
+
+        //RCC_APB2ENR
+        //Bit 8 ADC1EN: ADC1 clock enable
+        /*
+        ADC_CR2
+        Bit 0 ADON: A/D Converter ON / OFF
+        This bit is set and cleared by software.
+        Note: 0: Disable ADC conversion and go to power down mode
+        1: Enable ADC
+        */
+        public bool Init (  )
+        {
+            this.ControlRegister2 = this.ControlRegister2 | 0x1;
+
+            this.ControlRegister1 = this.ControlRegister1 | 0x200;
+        }
+
+        // -----------------------------------------------
+
+        /*
+        ADC_CR1
+        Bits 4:0 AWDCH[4:0]: Analog watchdog channel select bits
+        These bits are set and cleared by software. They select the input channel to be guarded by
+        the analog watchdog.
+        Note: 00000: ADC analog input Channel0
+        00001: ADC analog input Channel1
+        ...
+        01111: ADC analog input Channel15
+        10000: ADC analog input Channel16
+        10001: ADC analog input Channel17
+        10010: ADC analog input Channel18
+        ADC_DR // read from hier
+        bit 15:0
+        */
+        public int Read ( int channel )
+        {
+            this.RegularSequenceRegister3 = channel;
+
+            this.ControlRegister2 = this.ControlRegister2 | (0x1 << 0x1E);
+
+            int state = this.StatusRegister;
+            while ( ( state & 0x2 ) ^ 0x2 ) { state = this.StatusRegister; }
+
+            this.RegularDataRegister;
+        }
+
+        // -----------------------------------------------
+
+        #endregion methods
+
+        // -----------------------------------------------
+
+    }
+}

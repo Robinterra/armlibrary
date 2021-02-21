@@ -1,0 +1,57 @@
+namespace "ARM.CortexM"
+{
+    using "System";
+
+    public class ResetAndClockControl
+    {
+
+        // -----------------------------------------------
+
+        #region vars
+
+        // -----------------------------------------------
+
+        public int CR;//ClockControlRegister
+        public int PLLCFGR;//PLLConfigurationRegister
+        public int CFGR;//ClockConfigurationRegister
+        public int CIR;//ClockInterruptRegister
+        public int AHB1RSTR;//AHB1PeripheralResetRegister
+        public int AHB2RSTR;//AHB2PeripheralResetRegister
+        public int AHB3RSTR;//AHB2PeripheralResetRegister
+        public int AHB4RSTR;//AHB2PeripheralResetRegister
+        public int APB1RSTR;//APB1PeripheralResetRegister
+        public int APB2RSTR;//APB2PeripheralResetRegister
+        public int APB3RSTR;//APB1PeripheralResetRegister
+        public int APB4RSTR;//APB2PeripheralResetRegister
+        public int AHB1ENR;//AHB1PeripheralClockEnableRegister
+        public int AHB2ENR;//AHB2PeripheralClockEnableRegister
+        public int AHB3ENR;//AHB1PeripheralClockEnableRegister
+        public int AHB4ENR;//AHB2PeripheralClockEnableRegister
+        public int APB1ENR;//APB1PeripheralClockEnableRegister
+        public int APB2ENR;//APB2PeripheralClockEnableRegister
+        public int APB3ENR;//APB1PeripheralClockEnableRegister
+        public int APB4ENR;//APB2PeripheralClockEnableRegister
+
+        // -----------------------------------------------
+
+        #endregion vars
+
+        // -----------------------------------------------
+
+        #region methods
+
+        // -----------------------------------------------
+
+        public bool EnableAdc1()
+        {
+            this.APB2ENR = this.APB2ENR | #defalgo IORegister,EnableAdc1:;
+        }
+
+        // -----------------------------------------------
+
+        #endregion methods
+
+        // -----------------------------------------------
+
+    }
+}
