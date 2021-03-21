@@ -49,6 +49,13 @@ namespace "ARM.CortexM"
 
         // -----------------------------------------------
 
+        public bool EnableGpioPorts ( int value )
+        {
+            this.AHB1ENR = this.AHB1ENR | value;
+        }
+
+        // -----------------------------------------------
+
         #endregion methods
 
         // -----------------------------------------------
