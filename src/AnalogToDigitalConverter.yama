@@ -2,7 +2,7 @@ namespace "ARM.CortexM"
 {
     using "System";
 
-    public class AnalogToDigitalConverter
+    public primitive class AnalogToDigitalConverter
     {
 
         // -----------------------------------------------

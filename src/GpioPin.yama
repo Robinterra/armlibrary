@@ -3,7 +3,7 @@ namespace "ARM.CortexM.Advanced"
     using "System";
     using "System.IO";
 
-    public class GpioPin
+    public primitive class GpioPin
     {
 
         // -----------------------------------------------

@@ -2,7 +2,7 @@ namespace "ARM.CortexM"
 {
     using "System";
 
-    public class ResetAndClockControl
+    public primitive class ResetAndClockControl
     {
 
         // -----------------------------------------------

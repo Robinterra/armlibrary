@@ -2,7 +2,7 @@ namespace "ARM.CortexM"
 {
     using "System";
 
-    public class IORegister
+    public static class IORegister
     {
 
         // -----------------------------------------------
