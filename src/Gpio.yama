@@ -34,7 +34,36 @@ namespace "ARM.CortexM"
 
         public bool InitPort ( int pin, int mode )
         {
-            this.MODER = (mode << (pin << 1)) | this.MODER;
+            pin = pin << 1;
+
+            this.MODER = (mode << pin) | this.MODER;
+        }
+
+        // -----------------------------------------------
+
+        public bool SetPullUpPullDown ( int pin, int mode )
+        {
+            pin = pin << 1;
+
+            this.PUPDR = (mode << pin) | this.PUPDR;
+        }
+
+        // -----------------------------------------------
+
+        public bool SetSpeed ( int pin, int mode )
+        {
+            pin = pin << 1;
+
+            this.OSPEEDR = (mode << pin) | this.OSPEEDR;
+        }
+
+        // -----------------------------------------------
+
+        public bool SetOutputType ( int pin, int mode )
+        {
+            mode = mode & 0x1;
+
+            this.OTYPER = (mode << pin) | this.OTYPER;
         }
 
         // -----------------------------------------------
@@ -64,6 +93,27 @@ namespace "ARM.CortexM"
 
         // -----------------------------------------------
 
+    }
+
+    public enum PinSpeedMode
+    {
+        Low 0x0,
+        Medium 0x1,
+        Fast 0x2,
+        High 0x3
+    }
+
+    public enum PinPullUpDownMode
+    {
+        None 0x0,
+        PullUp 0x1,
+        PullDown 0x2
+    }
+
+    public enum PinOutputType
+    {
+        PushPull 0x0,
+        OpenDrain 0x1
     }
 
     public enum PinValue
