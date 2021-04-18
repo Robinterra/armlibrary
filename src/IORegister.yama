@@ -67,12 +67,6 @@ namespace "ARM.CortexM"
 
     }
 
-    public enum IOValue
-    {
-        Low 0x0,
-        High 0x1
-    }
-
     /*public enum Registers
     {
         CRL 0x00,
@@ -81,10 +75,4 @@ namespace "ARM.CortexM"
         ODR 0x0C
     }*/
 
-    public enum IORegisterMode
-    {
-        Read 0x0,
-        Write 0x1,
-        Analog 0x3
-    }
 }

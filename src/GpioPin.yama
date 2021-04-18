@@ -27,7 +27,7 @@ namespace "ARM.CortexM.Advanced"
 
         public this new ( Gpio gpio, int pin )
         {
-            this.gpioPort =  gpio;
+            this.gpioPort = gpio;
             this.pin = pin;
             this;
         }

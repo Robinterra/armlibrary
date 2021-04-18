@@ -65,4 +65,18 @@ namespace "ARM.CortexM"
         // -----------------------------------------------
 
     }
+
+    public enum PinValue
+    {
+        Low 0x0,
+        High 0x1
+    }
+
+    public enum PinMode
+    {
+        Read 0x0,
+        Write 0x1,
+        Alternative 0x2,
+        Analog 0x3
+    }
 }
