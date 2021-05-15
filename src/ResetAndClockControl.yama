@@ -56,6 +56,78 @@ namespace "ARM.CortexM"
 
         // -----------------------------------------------
 
+        private int AHBPrescTable (  )
+        {
+            int tmp = this.CFGR & 0xF0;
+
+            tmp = tmp >> 4;
+
+            if ( tmp < 8) return 0;
+
+            tmp = tmp - 7;
+
+            return tmp;
+        }
+
+        // -----------------------------------------------
+
+        private int PLLTickRate (  )
+        {
+            int pllsource = this.PLLCFGR & 0x400000;
+            pllsource = pllsource >> 22;
+
+            int pllm = this.PLLCFGR & 0x3F;
+
+            if (pllsource != 0) { pllsource = 0x17D7840; }
+            else { pllsource = 0xF42400; }
+
+            int pllvco = pllsource / pllm;
+
+            int plln = this.PLLCFGR & 0x7FC0;
+            plln = plln >> 6;
+
+            pllvco = pllvco * plln;
+
+            int pllp = this.PLLCFGR & 0x30000;
+            pllp = pllp >> 15;
+            pllp = pllp + 2;
+
+            return pllvco / pllp;
+        }
+
+        // -----------------------------------------------
+
+        public int TicksPerSecond (  )
+        {
+            int tmp = this.CFGR & 0xC;
+
+            int res = 0xF42400; //Value of the Internal oscillator in Hz
+
+            if (tmp == 0x4) { res = 0x17D7840; }//Default value of the External oscillator in Hz
+            if (tmp == 0x8) { res = this.PLLTickRate (  ); }//PLL used as system clock source
+
+            tmp = this.AHBPrescTable (  );
+
+            return res >> tmp;
+        }
+
+        // -----------------------------------------------
+
+        public int WaitTenMicroSeconds()
+        {
+            int secondTick = this.TicksPerSecond();
+            secondTick = secondTick / 3;
+            secondTick = secondTick / 100000;
+            secondTick = secondTick >> 1;
+
+            while (secondTick = secondTick - 1)
+            {
+
+            }
+        }
+
+        // -----------------------------------------------
+
         #endregion methods
 
         // -----------------------------------------------

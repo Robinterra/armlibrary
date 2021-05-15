@@ -142,6 +142,26 @@
                     "mov r1, #0x1",
                     "lsl [SSAPUSH], r1, #[ADC1EN_RCC_POS]"
                 ]
+            },
+            {
+                "Name": "IORegister",
+                "Mode": "SysTick",
+                "Description": null,
+                "Keys": [
+                    {
+                        "Name": "[SysTick]",
+                        "Values": null
+                    },
+                    {
+                        "Name": "[SSAPUSH]",
+                        "Values": [
+                        ]
+                      }
+                ],
+                "PostKeys": [],
+                "AssemblyCommands": [
+                "ldr [SSAPUSH], =[SysTick]"
+                ]
             }
        ],
         "AdvancedKeyReplaces": [
@@ -199,6 +219,12 @@
                 "Value": "0x48000000",
                 "Defines": [
                   "STM32F303"
+                ]
+            },
+            {
+                "Key": "[SysTick]",
+                "Value": "0xE000E010",
+                "Defines": [
                 ]
             }
         ],

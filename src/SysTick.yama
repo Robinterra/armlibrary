@@ -1,0 +1,43 @@
+namespace "ARM.CortexM"
+{
+    using "System";
+
+    public primitive class SysTick
+    {
+
+        // -----------------------------------------------
+
+        #region vars
+
+        // -----------------------------------------------
+
+        public int CTRL;
+        public int LOAD;
+        public int VAL;
+        public int CALIB;
+
+        // -----------------------------------------------
+
+        #endregion vars
+
+        // -----------------------------------------------
+
+        #region methods
+
+        // -----------------------------------------------
+
+        public bool SysTick_Config ( int ticks )
+        {
+            this.LOAD = ticks & 0xFFFFFF;
+            this.VAL = 0x0;
+            this.CTRL = 0x7;
+        }
+
+        // -----------------------------------------------
+
+        #endregion methods
+
+        // -----------------------------------------------
+
+    }
+}
