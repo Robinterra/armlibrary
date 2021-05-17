@@ -49,9 +49,16 @@ namespace "ARM.CortexM.Advanced"
 
         // -----------------------------------------------
 
-        public bool Read (  )
+        public int Read (  )
         {
             this.gpioPort.Read ( this.pin );
+        }
+
+        // -----------------------------------------------
+
+        public bool ChangeMode ( int mode )
+        {
+            this.gpioPort.InitPort ( this.pin, mode );
         }
 
         // -----------------------------------------------
