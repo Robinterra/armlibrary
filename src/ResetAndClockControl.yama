@@ -113,13 +113,31 @@ namespace "ARM.CortexM"
 
         // -----------------------------------------------
 
+        public int WaitInMiliSeconds(int miliSecond)
+        {
+            int wert = 1000 / miliSecond;
+            //if (microSecond > wert) { microSecond = 1000000; }
+            //int waitTeiler = wert / microSecond;
+            int secondTick = this.TicksPerSecond();
+            secondTick = secondTick >> 4;
+            secondTick = secondTick / wert;
+            secondTick = secondTick + 126 * miliSecond;
+
+            while (secondTick = secondTick - 1)
+            {
+
+            }
+        }
+
+        // -----------------------------------------------
+
+        // -----------------------------------------------
+
         public int WaitInMicroSeconds(int microSecond)
         {
-            int wert = 1000000;
-            if (microSecond > wert) { microSecond = 1000000; }
-            int waitTeiler = wert / microSecond;
+            int waitTeiler = 1000000 / microSecond;
             int secondTick = this.TicksPerSecond();
-            secondTick = secondTick / 15;
+            secondTick = secondTick / 5;
             secondTick = secondTick / waitTeiler;
 
             while (secondTick = secondTick - 1)
