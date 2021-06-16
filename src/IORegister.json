@@ -166,62 +166,6 @@
        ],
         "AdvancedKeyReplaces": [
             {
-                "Key": "[ADC1]",
-                "Value": "0x40012000",
-                "Defines": [
-                  "STM32F401"
-                ]
-            },
-            {
-                "Key": "[RCC_APB2ENR]",
-                "Value": "0x40023844",
-                "Defines": [
-                  "STM32F401"
-                ]
-            },
-            {
-                "Key": "[RCC_ROOT]",
-                "Value": "0x40023800",
-                "Defines": [
-                  "STM32F401"
-                ]
-            },
-            {
-                "Key": "[ADC1EN_RCC_POS]",
-                "Value": "0x8",
-                "Defines": [
-                  "STM32F401"
-                ]
-            },
-            {
-                "Key": "[GPIOA]",
-                "Value": "0x40020000",
-                "Defines": [
-                  "STM32F401"
-                ]
-            },
-            {
-                "Key": "[GPIOB]",
-                "Value": "0x40020400",
-                "Defines": [
-                  "STM32F401"
-                ]
-            },
-            {
-                "Key": "[GPIOC]",
-                "Value": "0x40020800",
-                "Defines": [
-                  "STM32F401"
-                ]
-            },
-            {
-                "Key": "[GPIOA]",
-                "Value": "0x48000000",
-                "Defines": [
-                  "STM32F303"
-                ]
-            },
-            {
                 "Key": "[SysTick]",
                 "Value": "0xE000E010",
                 "Defines": [

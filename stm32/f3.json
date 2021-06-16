@@ -1,0 +1,42 @@
+[
+    {
+        "Name": "arm-t32",
+        "AdvancedKeyReplaces": [
+            {
+                "Key": "[RCC]",
+                "Value": "0x40021014",
+                "Defines": [
+                    "stm32f3"
+                ]
+            },
+            {
+                "Key": "[RCC_SKIP]",
+                "Value": "0x10",
+                "Defines": [
+                    "stm32f3"
+                ]
+            },
+            {
+                "Key": "[RAMENDE]",
+                "Value": "0x20009FF8",
+                "Defines": [
+                    "stm32f3"
+                ]
+            },
+            {
+                "Key": "[SPBEGIN]",
+                "Value": "0x20009FF8",
+                "Defines": [
+                    "stm32f3"
+                ]
+            },
+            {
+                "Key": "[GPIOA]",
+                "Value": "0x48000000",
+                "Defines": [
+                  "stm32f3"
+                ]
+            }
+        ]
+    }
+]

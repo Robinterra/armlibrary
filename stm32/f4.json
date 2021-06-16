@@ -1,0 +1,70 @@
+[
+    {
+        "Name": "arm-t32",
+        "AdvancedKeyReplaces": [
+            {
+                "Key": "[RAMENDE]",
+                "Value": "0x2000FFF8",
+                "Defines": [
+                "stm32f4"
+                ]
+            },
+            {
+                "Key": "[SPBEGIN]",
+                "Value": "0x2000FFF8",
+                "Defines": [
+                "stm32f4"
+                ]
+            },
+            {
+                "Key": "[ADC1]",
+                "Value": "0x40012000",
+                "Defines": [
+                  "stm32f4"
+                ]
+            },
+            {
+                "Key": "[RCC_APB2ENR]",
+                "Value": "0x40023844",
+                "Defines": [
+                  "stm32f4"
+                ]
+            },
+            {
+                "Key": "[RCC_ROOT]",
+                "Value": "0x40023800",
+                "Defines": [
+                  "stm32f4"
+                ]
+            },
+            {
+                "Key": "[ADC1EN_RCC_POS]",
+                "Value": "0x8",
+                "Defines": [
+                  "stm32f4"
+                ]
+            },
+            {
+                "Key": "[GPIOA]",
+                "Value": "0x40020000",
+                "Defines": [
+                  "stm32f4"
+                ]
+            },
+            {
+                "Key": "[GPIOB]",
+                "Value": "0x40020400",
+                "Defines": [
+                  "stm32f4"
+                ]
+            },
+            {
+                "Key": "[GPIOC]",
+                "Value": "0x40020800",
+                "Defines": [
+                  "stm32f4"
+                ]
+            }
+        ]
+    }
+]

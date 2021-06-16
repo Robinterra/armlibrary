@@ -1,3 +1,4 @@
 Target:"arm-t32"
 
 Source:"src/"
+Ext:"stm32/"
