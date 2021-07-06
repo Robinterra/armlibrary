@@ -70,7 +70,9 @@ namespace "ARM.CortexM"
 
         public bool Read ( int pin )
         {
-            return (this.IDR >> pin) & 0x1;
+            int result = this.IDR >> pin;
+
+            return result & 0x1;
         }
 
         // -----------------------------------------------
