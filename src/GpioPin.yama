@@ -29,7 +29,8 @@ namespace "ARM.CortexM.Advanced"
         {
             this.gpioPort = gpio;
             this.pin = pin;
-            this;
+
+            return this;
         }
 
         // -----------------------------------------------
@@ -51,21 +52,21 @@ namespace "ARM.CortexM.Advanced"
 
         public int Read (  )
         {
-            this.gpioPort.Read ( this.pin );
+            return this.gpioPort.Read ( this.pin );
         }
 
         // -----------------------------------------------
 
         public bool ChangeMode ( int mode )
         {
-            this.gpioPort.InitPort ( this.pin, mode );
+            return this.gpioPort.InitPort ( this.pin, mode );
         }
 
         // -----------------------------------------------
 
         public bool Write ( int value )
         {
-            this.gpioPort.Write ( this.pin, value );
+            return this.gpioPort.Write ( this.pin, value );
         }
 
         // -----------------------------------------------
