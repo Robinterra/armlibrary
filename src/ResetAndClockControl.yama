@@ -135,7 +135,7 @@ namespace "ARM.CortexM"
 
         public int WaitInMicroSeconds(int microSecond)
         {
-            int waitTeiler = 200000 / microSecond;
+            int waitTeiler = 5000000 / microSecond;
             int secondTick = this.TicksPerSecond();
             secondTick = secondTick / 5;
             secondTick = secondTick / waitTeiler;
