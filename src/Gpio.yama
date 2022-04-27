@@ -99,36 +99,36 @@ namespace "ARM.CortexM"
 
     public enum PinSpeedMode
     {
-        Low 0x0,
-        Medium 0x1,
-        Fast 0x2,
-        High 0x3
+        Low = 0x0,
+        Medium = 0x1,
+        Fast = 0x2,
+        High = 0x3
     }
 
     public enum PinPullUpDownMode
     {
-        None 0x0,
-        PullUp 0x1,
-        PullDown 0x2
+        None = 0x0,
+        PullUp = 0x1,
+        PullDown = 0x2
     }
 
     public enum PinOutputType
     {
-        PushPull 0x0,
-        OpenDrain 0x1
+        PushPull = 0x0,
+        OpenDrain = 0x1
     }
 
     public enum PinValue
     {
-        Low 0x0,
-        High 0x1
+        Low = 0x0,
+        High = 0x1
     }
 
     public enum PinMode
     {
-        Read 0x0,
-        Write 0x1,
-        Alternative 0x2,
-        Analog 0x3
+        Read = 0x0,
+        Write = 0x1,
+        Alternative = 0x2,
+        Analog = 0x3
     }
 }
