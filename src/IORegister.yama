@@ -13,49 +13,49 @@ namespace "ARM.CortexM"
 
         public static Gpio PortA()
         {
-            #defalgo IORegister,PortA:;
+            return #defalgo IORegister,PortA:;
         }
 
         // -----------------------------------------------
 
         public static Gpio PortB()
         {
-            #defalgo IORegister,PortB:;
+            return #defalgo IORegister,PortB:;
         }
 
         // -----------------------------------------------
 
         public static Gpio PortC()
         {
-            #defalgo IORegister,PortC:;
+            return #defalgo IORegister,PortC:;
         }
 
         // -----------------------------------------------
 
         public static Gpio PortD()
         {
-            #defalgo IORegister,PortD:;
+            return #defalgo IORegister,PortD:;
         }
 
         // -----------------------------------------------
 
         public static AnalogToDigitalConverter Adc1()
         {
-            #defalgo IORegister,Adc1:;
+            return #defalgo IORegister,Adc1:;
         }
 
         // -----------------------------------------------
 
         public static ResetAndClockControl Rcc()
         {
-            #defalgo IORegister,RccRoot:;
+            return #defalgo IORegister,RccRoot:;
         }
 
         // -----------------------------------------------
 
         public static SysTick SysTickRegister()
         {
-            #defalgo IORegister,SysTick:;
+            return #defalgo IORegister,SysTick:;
         }
 
         // -----------------------------------------------
