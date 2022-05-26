@@ -84,7 +84,7 @@ namespace "ARM.CortexM"
             int state = this.StatusRegister;
             while ( ( state & 0x2 ) ^ 0x2 ) { state = this.StatusRegister; }
 
-            this.RegularDataRegister;
+            return this.RegularDataRegister;
         }
 
         // -----------------------------------------------
