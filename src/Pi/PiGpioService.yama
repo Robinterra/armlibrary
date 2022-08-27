@@ -26,15 +26,24 @@ namespace "ARM.Pi"
         public this new ( int piVariante )
         {
             Array pinMap = Array.New[32];
-            pinMap.Data[2] = (new PiGpioPin(0, 6)) as int;
-            pinMap.Data[3] = (new PiGpioPin(0, 9)) as int;
-            pinMap.Data[4] = (new PiGpioPin(0, 12)) as int;
-            pinMap.Data[5] = (new PiGpioPin(0, 15)) as int;
-            pinMap.Data[6] = (new PiGpioPin(0, 18)) as int;
-            pinMap.Data[17] = (new PiGpioPin(4, 21)) as int;
-            pinMap.Data[22] = (new PiGpioPin(8, 6)) as int;
-            pinMap.Data[23] = (new PiGpioPin(8, 9)) as int;
-            pinMap.Data[27] = (new PiGpioPin(8, 21)) as int;
+            PiGpioPin pin = new PiGpioPin(0, 6);
+            pinMap.Data[2] = pin as int;
+            pin = new PiGpioPin(0, 9);
+            pinMap.Data[3] = pin as int;
+            pin = new PiGpioPin(0, 12);
+            pinMap.Data[4] = pin as int;
+            pin = new PiGpioPin(0, 15);
+            pinMap.Data[5] = pin as int;
+            pin = new PiGpioPin(0, 18);
+            pinMap.Data[6] = pin as int;
+            pin = new PiGpioPin(4, 21);
+            pinMap.Data[17] = pin as int;
+            pin = new PiGpioPin(8, 6);
+            pinMap.Data[22] = pin as int;
+            pin = new PiGpioPin(8, 9);
+            pinMap.Data[23] = pin as int;
+            pin = new PiGpioPin(8, 21);
+            pinMap.Data[27] = pin as int;
             this.pinMap = pinMap;
 
             return this;
