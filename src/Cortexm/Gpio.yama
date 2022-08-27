@@ -34,9 +34,9 @@ namespace "ARM.CortexM"
 
         public bool InitPort ( int pin, int mode )
         {
-            pin = pin << 1;
+            int cleanpin = pin << 1;
 
-            this.MODER = (mode << pin) | this.MODER;
+            this.MODER = (mode << cleanpin) | this.MODER;
         }
 
         // -----------------------------------------------
@@ -79,14 +79,14 @@ namespace "ARM.CortexM"
 
         public bool Write ( int pin, int value )
         {
-            value = value & 0x1;
+            int cleanvalue = value & 0x1;
 
-            if (value != 0x1)
+            if (cleanvalue != 0x1)
             {
-                value = 1 << 0x10;
+                cleanvalue = 1 << 0x10;
             }
 
-            this.BSRR = value << pin;
+            this.BSRR = cleanvalue << pin;
         }
 
         // -----------------------------------------------
