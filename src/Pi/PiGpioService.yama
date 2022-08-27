@@ -3,6 +3,7 @@ namespace "ARM.Pi"
     using "System";
     using "System.IO";
     using "System.Gpio";
+    using "System.Collections";
     using "System.Runtime";
 
     public class PiGpioService : IGpioService
@@ -25,15 +26,15 @@ namespace "ARM.Pi"
         public this new ( int piVariante )
         {
             Array pinMap = Array.New[32];
-            pinMap.Data[2] = new PiGpioPin(0, 6);
-            pinMap.Data[3] = new PiGpioPin(0, 9);
-            pinMap.Data[4] = new PiGpioPin(0, 12);
-            pinMap.Data[5] = new PiGpioPin(0, 15);
-            pinMap.Data[6] = new PiGpioPin(0, 18);
-            pinMap.Data[17] = new PiGpioPin(4, 21);
-            pinMap.Data[22] = new PiGpioPin(8, 6);
-            pinMap.Data[23] = new PiGpioPin(8, 9);
-            pinMap.Data[27] = new PiGpioPin(8, 21);
+            pinMap.Data[2] = new PiGpioPin(0, 6) as int;
+            pinMap.Data[3] = new PiGpioPin(0, 9) as int;
+            pinMap.Data[4] = new PiGpioPin(0, 12) as int;
+            pinMap.Data[5] = new PiGpioPin(0, 15) as int;
+            pinMap.Data[6] = new PiGpioPin(0, 18) as int;
+            pinMap.Data[17] = new PiGpioPin(4, 21) as int;
+            pinMap.Data[22] = new PiGpioPin(8, 6) as int;
+            pinMap.Data[23] = new PiGpioPin(8, 9) as int;
+            pinMap.Data[27] = new PiGpioPin(8, 21) as int;
             this.pinMap = pinMap;
 
             return this;
@@ -72,7 +73,7 @@ namespace "ARM.Pi"
 
         public bool InitPort ( int pin, int mode )
         {
-            PiGpioPin pinInfo = this.pinMap.Data[pin];
+            PiGpioPin pinInfo = this.pinMap.Data[pin] as PiGpioPin;
 
             int adresse = this.virtualAdressToGpio + pinInfo.Register;
 
