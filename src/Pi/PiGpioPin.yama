@@ -1,0 +1,30 @@
+namespace "ARM.Pi"
+{
+    using "System";
+    using "System.IO";
+    using "System.Gpio";
+    using "System.Runtime";
+
+    public primitiv class PiGpioPin
+    {
+
+        #region vars
+
+        public int Register;
+
+        public int AmountShift;
+
+        #endregion vars
+
+        #region ctor
+
+        public PiGpioPin(int register, int amountShift)
+        {
+            this.Register = register;
+            this.AmountShift = amountShift;
+        }
+
+        #endregion ctor
+
+    }
+}
