@@ -93,16 +93,14 @@ namespace "ARM.Pi"
 
         public bool Write ( int pin, int value )
         {
-            value = value & 1;
+            int adresse = this.virtualAdressToGpio;
+            if (value) adresse = adresse + 28;
+            else adresse = adresse + 40;
 
-            int adresse = 0;
-            if (value) adresse = this.virtualAdressToGpio + 28;
-            else adresse = this.virtualAdressToGpio + 40;
-
-            value = value << 3;
+            int setvalue = 1 << 3;
 
             Pointer pointer = adresse as Pointer;
-            pointer.Value = value;
+            pointer.setvalue = setvalue;
 
             return false;
         }
