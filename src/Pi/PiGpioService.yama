@@ -53,6 +53,7 @@ namespace "ARM.Pi"
         public static int GetAmountShift(int pin)
         {
             int position = pin / 10 * 10;
+            position = pin - position;
 
             return position * 3;
         }
