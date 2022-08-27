@@ -125,8 +125,9 @@ namespace "ARM.Pi"
             int result = pointer.Value;
 
             int res = result >> pin;
+            res = res & 0x1;
 
-            return res & 0x1;
+            return res ^ 0x1;
         }
 
         // -----------------------------------------------
