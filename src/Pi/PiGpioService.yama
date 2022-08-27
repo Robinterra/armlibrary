@@ -15,8 +15,6 @@ namespace "ARM.Pi"
 
         private int virtualAdressToGpio;
 
-        private Array pinMap;
-
         // -----------------------------------------------
 
         #region ctor
@@ -25,27 +23,6 @@ namespace "ARM.Pi"
 
         public this new ( int piVariante )
         {
-            Array pinMap = Array.New[32];
-            PiGpioPin pin = new PiGpioPin(0, 6);
-            pinMap.Data[2] = pin as int;
-            pin = new PiGpioPin(0, 9);
-            pinMap.Data[3] = pin as int;
-            pin = new PiGpioPin(0, 12);
-            pinMap.Data[4] = pin as int;
-            pin = new PiGpioPin(0, 15);
-            pinMap.Data[5] = pin as int;
-            pin = new PiGpioPin(0, 18);
-            pinMap.Data[6] = pin as int;
-            pin = new PiGpioPin(4, 21);
-            pinMap.Data[17] = pin as int;
-            pin = new PiGpioPin(8, 6);
-            pinMap.Data[22] = pin as int;
-            pin = new PiGpioPin(8, 9);
-            pinMap.Data[23] = pin as int;
-            pin = new PiGpioPin(8, 21);
-            pinMap.Data[27] = pin as int;
-            this.pinMap = pinMap;
-
             return this;
         }
 
@@ -66,6 +43,22 @@ namespace "ARM.Pi"
 
         // -----------------------------------------------
 
+        public static int GetRegister(int pin)
+        {
+            return pin / 10 * 4;
+        }
+
+        // -----------------------------------------------
+
+        public static int GetAmountShift(int pin)
+        {
+            int position = pin / 10 * 10;
+
+            return position * 3;
+        }
+
+        // -----------------------------------------------
+
         public bool Setup()
         {
             int fileId = InputOutput.OpenFile("/dev/gpiomem");
@@ -82,18 +75,18 @@ namespace "ARM.Pi"
 
         public bool InitPort ( int pin, int mode )
         {
-            PiGpioPin pinInfo = (this.pinMap.Data[pin]) as PiGpioPin;
-
-            int adresse = this.virtualAdressToGpio + pinInfo.Register;
+            int adresse = this.virtualAdressToGpio + PiGpioService.GetRegister(pin);
 
             Pointer pointer = adresse as Pointer;
             int value = pointer.Value;
 
-            int reset = 0x3 << pinInfo.AmountShift;
+            int amountShift = PiGpioService.GetAmountShift(pin);
+
+            int reset = 0x3 << amountShift;
             value = value | reset;
             value = value ^ reset;
 
-            int newPinState = mode << pinInfo.AmountShift;
+            int newPinState = mode << amountShift;
 
             pointer.Value = value | newPinState;
 
