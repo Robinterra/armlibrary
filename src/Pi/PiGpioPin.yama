@@ -18,7 +18,7 @@ namespace "ARM.Pi"
 
         #region ctor
 
-        public PiGpioPin(int register, int amountShift)
+        public this new(int register, int amountShift)
         {
             this.Register = register;
             this.AmountShift = amountShift;
