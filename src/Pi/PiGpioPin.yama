@@ -5,7 +5,7 @@ namespace "ARM.Pi"
     using "System.Gpio";
     using "System.Runtime";
 
-    public primitiv class PiGpioPin
+    public primitive class PiGpioPin
     {
 
         #region vars
