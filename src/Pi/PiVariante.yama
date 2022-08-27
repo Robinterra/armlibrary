@@ -1,0 +1,10 @@
+namespace "ARM.Pi"
+{
+    public enum PiVariante
+    {
+        Pi1 = 0x20200000,
+        Pi2 = 0x3F200000,
+        Pi3 = 0x3F200000,
+        Pi4 = 0xfe200000,
+    }
+}

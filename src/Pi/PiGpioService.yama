@@ -1,0 +1,118 @@
+namespace "ARM.Pi"
+{
+    using "System";
+    using "System.IO";
+    using "System.Gpio";
+    using "System.Runtime";
+
+    public class PiGpioService : IGpioService
+    {
+
+        // -----------------------------------------------
+
+        private int piVariante;
+
+        private int virtualAdressToGpio;
+
+        // -----------------------------------------------
+
+        #region ctor
+
+        // -----------------------------------------------
+
+        public this new ( int piVariante )
+        {
+            return this;
+        }
+
+        // -----------------------------------------------
+
+        public this ~ (  )
+        {
+
+        }
+
+        // -----------------------------------------------
+
+        #endregion ctor
+
+        // -----------------------------------------------
+
+        #region methods
+
+        // -----------------------------------------------
+
+        public bool Setup()
+        {
+            int fileId = InputOutput.OpenFile("/dev/gpiomem");
+
+            int piVariante = this.piVariante;
+
+            int virtualAdressToGpio = InputOutput.Mmap2(fileId, piVariante);
+            this.virtualAdressToGpio = virtualAdressToGpio;
+
+            return true;
+        }
+
+        // -----------------------------------------------
+
+        public bool InitPort ( int pin, int mode )
+        {
+            return false;
+        }
+
+        // -----------------------------------------------
+
+        public bool SetPullUpPullDown ( int pin, int mode )
+        {
+            return false;
+        }
+
+        // -----------------------------------------------
+
+        public bool SetSpeed ( int pin, int mode )
+        {
+            return false;
+        }
+
+        // -----------------------------------------------
+
+        public bool SetOutputType ( int pin, int mode )
+        {
+            return false;
+        }
+
+        // -----------------------------------------------
+
+        public bool Read ( int pin )
+        {
+            return false;
+        }
+
+        // -----------------------------------------------
+
+        public bool Write ( int pin, int value )
+        {
+            value = value & 1;
+
+            int adresse = 0;
+            if (value) adresse = this.virtualAdressToGpio + 28;
+            else adresse = this.virtualAdressToGpio + 40;
+
+            value = value << 3;
+
+            Pointer pointer = adresse as Pointer;
+            pointer.Value = value;
+
+            return false;
+        }
+
+        // -----------------------------------------------
+
+        #endregion methods
+
+        // -----------------------------------------------
+
+    }
+
+}
