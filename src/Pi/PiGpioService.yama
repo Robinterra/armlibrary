@@ -117,7 +117,7 @@ namespace "ARM.Pi"
 
         // -----------------------------------------------
 
-        public bool Read ( int pin )
+        public int Read ( int pin )
         {
             int adresse = this.virtualAdressToGpio + 0x34;
 
