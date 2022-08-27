@@ -100,7 +100,7 @@ namespace "ARM.Pi"
             int setvalue = 1 << 3;
 
             Pointer pointer = adresse as Pointer;
-            pointer.setvalue = setvalue;
+            pointer.Value = setvalue;
 
             return false;
         }
