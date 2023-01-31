@@ -78,7 +78,7 @@ namespace "ARM.Pi"
         {
             int adresse = this.virtualAdressToGpio + PiGpioService.GetRegister(pin);
 
-            Pointer pointer = adresse as Pointer;
+            Any pointer = adresse;
             int value = pointer.Value;
 
             int amountShift = PiGpioService.GetAmountShift(pin);
@@ -121,7 +121,7 @@ namespace "ARM.Pi"
         {
             int adresse = this.virtualAdressToGpio + 0x34;
 
-            Pointer pointer = adresse as Pointer;
+            Any pointer = adresse;
             int result = pointer.Value;
 
             int res = result >> pin;
@@ -140,7 +140,7 @@ namespace "ARM.Pi"
 
             int setvalue = 1 << pin;
 
-            Pointer pointer = adresse as Pointer;
+            Any pointer = adresse;
             pointer.Value = setvalue;
 
             return true;
