@@ -62,7 +62,7 @@ namespace "ARM.Pi"
 
         public bool Setup()
         {
-            int fileId = InputOutput.OpenFile("/dev/gpiomem");
+            int fileId = InputOutput.OpenFile("/dev/gpiomem", FileFlags.ReadWrite, FileModes.ReadWriteEverything);
 
             int piVariante = this.piVariante;
 
